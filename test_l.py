@@ -4,6 +4,7 @@ from tqdm import tqdm
 import ipdb
 import csv
 
+path = "/root/mutil_agent/FREB-TQA/dataset/02_rel/wtq_nonfactoid_dev.json"
 def reformat_table(table):
     if isinstance(table, list):
         header = table[0]
@@ -19,9 +20,6 @@ def reformat_table(table):
         output += ' | '.join(row)
         output += '\n'
     return output
-
-path = "/root/mutil_agent/FREB-TQA/dataset/02_rel/wtq_nonfactoid_dev.json"
-
 
 def Response(model, tokenizer,ids, query,answer, table):
     time = 0
@@ -59,8 +57,6 @@ def Response(model, tokenizer,ids, query,answer, table):
                 'table': t,
                 'llm_answer' : decoded_output
             })
-
-
 if __name__ == "__main__":
     # 加载预训练的模型和分词器
     tokenizer = AutoTokenizer.from_pretrained("cspencergo/llama-2-7b-tabular")
